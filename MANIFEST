@@ -1,0 +1,9 @@
+Changes
+examples/synopsis.pl
+lib/Sub/Middler.pm
+LICENSE
+Makefile.PL
+MANIFEST
+README
+README.md
+t/Sub-Middler.t
