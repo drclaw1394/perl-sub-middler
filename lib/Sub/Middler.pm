@@ -100,10 +100,10 @@ Sub::Middler - Middleware subroutine chaining
 =head1 DESCRIPTION
 
 A small module, facilitating linking together subroutines, acting as middleware
-or filters into chains with low overhead runtime performance.
+or filters into chains with low runtime overhead.
 
 To achieve this, the  'complexity' is offloaded to the definition of
-middleware/filters subroutines. They have to be wrapped in subroutines
+middleware/filters subroutines. They must be wrapped in subroutines
 appropriately to facilitate the lexical binding of linking variables.
 
 This differs from other 'sub chaining' modules as it does not use a loop
@@ -112,9 +112,10 @@ no implicit call to the next item in the chain. Each stage can run
 synchronously or asynchronously or even not at all. Each element in the chain
 is responsible for calling the next.
 
-Finally the arguments and signatures use for each stage of middleware are
-completely user defined. This allows reuse of the C<@_> array in calling
-subsequent segments for ultimate performance if you know what you're doing.
+Finally the arguments and signatures at each stage of middleware are completely
+user defined and are not interfered with by this module. This allows reuse of
+the C<@_> array in calling subsequent stages for ultimate performance if you
+know what you're doing.
 
 
 =head1 API
@@ -138,12 +139,12 @@ Appends the middleware to the internal list for later linking.
 
     $object->link($last);
 
-Links together the registered middleware stored internally. Each middleware is
-intrinsically linked to the next middleware in the list. The last middleware
-being linked to the C<$last> argument, which must be a code ref. 
+Links together the registered middleware. Each middleware is intrinsically
+linked to the next middleware in the list. The last middleware being linked to
+the C<$last> argument, which must be a code ref. 
 
 The C<$last> ref MUST be  a regular subroutine reference, not middleware as it
-is defined below
+is defined below.
 
 Calls C<die> if C<$last> is not a code ref.
 
@@ -232,8 +233,8 @@ distribution.
 L<Sub::Chain>  and L<Sub::Pipeline> links together subs. They provide other
 features that this module does not. 
 
-These iterate over a list of subroutines, at runtime to achieve named subs etc.
-This modules pre links subroutines together, reducing over head
+These iterate over a list of subroutines at runtime to achieve named subs etc.
+where as this module pre links subroutines together, reducing overhead.
 
 
 =head1 AUTHOR
