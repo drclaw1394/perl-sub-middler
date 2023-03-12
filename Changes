@@ -8,6 +8,8 @@ v0.2.0 2023-03-10
 
   - Attempting to register/add a  non code ref will die
 
+  - method 'register' is aliased to 'add' and 'append'
+
   [tests]
   - Added tests covering registering, linking and passing link arguments
 

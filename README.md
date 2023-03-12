@@ -90,7 +90,7 @@ Appends the middleware to the internal list for later linking.
 
 ### append, add
 
-Synonyms for register
+Alias for register
 
 ### link
 

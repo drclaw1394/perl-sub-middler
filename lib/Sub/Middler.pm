@@ -143,7 +143,7 @@ Appends the middleware to the internal list for later linking.
 
 =head3 append, add
 
-Synonyms for register
+Alias for register
 
 =head3 link
 
