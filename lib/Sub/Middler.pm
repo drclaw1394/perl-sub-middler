@@ -5,7 +5,8 @@ use warnings;
 use feature "refaliasing";
 
 
-our $VERSION = 'v0.2.0';
+our $VERSION = 'v0.3.0';
+use Export::These qw<linker>;
 
 sub new {
 	#simply an array...	
@@ -53,6 +54,14 @@ sub link {
 	@middleware?$mw[0]:$dispatcher;
 }
 
+sub  linker {
+  my $dispatch=pop; 
+
+  my $chain=Sub::Middler->new;
+  $chain->register($_) for @_; 
+  $chain->link($dispatch);
+  
+}
 
 1;
 
