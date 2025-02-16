@@ -5,7 +5,11 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'Sub::Middler',
     VERSION_FROM      => 'lib/Sub/Middler.pm', 
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {
+
+        "Export::These"=>0
+    
+      }, # e.g., Module::Name => 1.1
     ABSTRACT_FROM     => 'lib/Sub/Middler.pm', # retrieve abstract from module
     AUTHOR            => 'Ruben Westerberg <drclaw@mac.com>',
     LICENSE           => 'mit',
