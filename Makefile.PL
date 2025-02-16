@@ -17,7 +17,7 @@ WriteMakefile(
           repository =>{
             type => "git",
             url => "git://github.com/drclaw1394/perl-sub-middler.git",
-            web => "http://github.com/drclaw1394/perl-sub-middler",
+            web => "https://github.com/drclaw1394/perl-sub-middler",
           }
         }
       }
