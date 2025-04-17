@@ -34,7 +34,7 @@ sub _sink_sub;
 sub link {
   no warnings "experimental";
 
-  #die "A CODE reference is requred when linking middleware" unless(@_ >=2 and ref $_[1] eq "CODE");
+  #die "A CODE reference is required when linking middleware" unless(@_ >=2 and ref $_[1] eq "CODE");
   
 
 	\my @self=shift;	#self;
@@ -266,8 +266,11 @@ know what you're doing.
 
 As a general guide it's suggested the last argument to a stage be a subroutine
 reference to allow callbacks and asynchronous usage. Instead of a flat list of
-multiple inputs into a stage, it is suggested to also contain these in a array
+multiple inputs into a stage, it is suggested to also contain these in an array
 
+From v0.4.0, shortcuts can be used to to bypass writing the nestled
+subroutines subroutines for some common use cases. A reference to a
+SCALAR/ARRAY/HASH/CODE can be used instead of custom middleware
 
 =head1 API
 
@@ -276,11 +279,36 @@ multiple inputs into a stage, it is suggested to also contain these in a array
   linker mw1, ..., dispatch
 
 From v0.3.0, the C<linker> subroutine is exported and will do an inline build
-and link for a given middlewares and dispatch routine
+and link for a given middleware and dispatch routine
 
 The return value is the head of the linked chain, and is equivalent to created
 a C<Sub::Middler> object, adding middleware, and the calling the link method.
 
+
+=head2 Short Cuts
+
+  
+Instead of writing custom middleware, references to variables and CODE can be
+used instead.
+
+If an array reference is used, all elements from the first argument will be
+appended to the array
+
+If an hash reference is used, the elements from the first argument will be
+treated as key value pairs and set the corresponding elements in the target
+hash
+
+If a scalar reference is use, the elements from the first argument will be
+converted to strings and appending to the target variable
+
+
+If a reference is a CODE reference is used, the underlying subroutine is
+expected to modify the first argument elements in place. The return value is
+not used.
+
+
+In all the above cases, the next link in the chain is automatically called with
+the same arguments, making chaining and saving intermediate values easy
 
 
 =head2 Managing a chain
